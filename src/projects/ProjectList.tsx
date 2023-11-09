@@ -1,11 +1,15 @@
 import PropTypes from "prop-types";
 import { Project } from "./Project";
 
-// export default function ProjectsList({ projects }) {
+interface ProjectListProps {
+  projects: Project[];
+}
+
+// function ProjectList({ projects }: ProjectListProps) {
 //   return <pre>{JSON.stringify(projects, null, " ")}</pre>;
 // }
 
-export default function ProjectsList({ projects }) {
+export default function ProjectList({ projects }: ProjectListProps) {
   return (
     <div className="row">
       {projects.map((project) => (
@@ -25,10 +29,6 @@ export default function ProjectsList({ projects }) {
     </div>
   );
 }
-
-ProjectsList.propTypes = {
-  projects: PropTypes.arrayOf(PropTypes.instanceOf(Project)).isRequired
-};
 
 // {
 //   "id": 1,
