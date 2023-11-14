@@ -6,9 +6,14 @@ function formatDescription(description: string): string {
 
 interface ProjectCardProps {
   project: Project;
+  onEdit: (project: Project) => void;
 }
 
-export default function ProjectCard({ project }: ProjectCardProps) {
+export default function ProjectCard({ project, onEdit }: ProjectCardProps) {
+  const handleEditClick = (projectBeingEdited: Project) => {
+    onEdit(projectBeingEdited);
+  };
+
   return (
     <div className="card">
       <img src={project.imageUrl} alt={project.name} />
@@ -18,6 +23,10 @@ export default function ProjectCard({ project }: ProjectCardProps) {
         </h5>
         <p>{formatDescription(project.description)}</p>
         <p>Budget: ${project.budget.toLocaleString()}</p>
+        <button className="bordered" onClick={() => handleEditClick(project)}>
+          <span className="icon-edit "></span>
+          Edit
+        </button>
       </section>
     </div>
   );
